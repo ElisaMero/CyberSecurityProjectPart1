@@ -43,5 +43,4 @@ psql < schema.sql
 flask run
 ```
 
-
-Jos käynnistyksessä ilmenee ongelmia, voit testata psql pyörimisen komennolla: start-pg.sh
+If there are problems during running of the program, you can test the running of psql with this code: start-pg.sh
