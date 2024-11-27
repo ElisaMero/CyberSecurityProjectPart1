@@ -9,4 +9,39 @@ Note!:
 
 Instructions for installing and running:
 
-(coming up)
+Klone this repository in your computer -> go in the root file -> create .env -file
+Add in .env file:
+
+DATABASE_URL = < computer's-local-address >
+
+SECRET_KEY = < secret-key >
+
+Install in terminal (Linux, Mac and Windows):
+
+```
+python3 -m venv venv
+```
+
+```
+source venv/bin/activate
+```
+or in Windows:
+
+```
+.venv\Scripts\activate
+```
+
+```
+pip install -r ./requirements.txt
+```
+
+```
+psql < schema.sql
+```
+
+```
+flask run
+```
+
+
+Jos käynnistyksessä ilmenee ongelmia, voit testata psql pyörimisen komennolla: start-pg.sh
