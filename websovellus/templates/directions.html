@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/directions.css">
+</head>
+
+<body>
+    <header>
+        <a href="/back" class="linkstyle">Back</a>
+        <a href="/pothos" class="linkstyle">Pothos</a>
+        <a href="/snake" class="linkstyle">Snake plant</a>
+
+    </header>
+
+    <p>Here you can find some directions for the most common plants!</p>
+    <br>
+    {% for i in info %}
+
+    <h3>{{ i[0] }}</h3>
+    <br>
+    <p>{{ i[1] }}</p>
+    <br>
+
+    {% endfor %}
+
+    <b>Note!</b>
+    <p>Often underwatering is better and more easily to fix than overwatering. Overwatering can lead to a root
+        rot, which often leads death - for the plant, not you..</p>
+
+
+</body>
+
+</html>

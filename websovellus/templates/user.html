@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/user.css">
+    <title>Plant Blog</title>
+
+</head>
+
+<body>
+    <header>
+        <h1>Plant Blog &#127793;</h1>
+
+        <h3>Welcome {{ name }}!</h3>
+
+        <a href="/direction" class="linkstyle">Plant help</a>
+
+        <a href="/logout" class="linkstyle">Log out</a>
+    </header>
+
+    <div class="start">
+        <b> Click a plant or add one!</b>
+    </div>
+
+    <div class="platform">
+        <div class="plant_list">
+            <br>
+            <a href="/new_plant" class="linkstyle">Add</a>
+            <p> </p>
+            <form action="/search" method="get">
+                <input type="text" name="word" placeholder="Search plants">
+                <br>
+                <input type="submit" value="Search">
+            </form>
+
+
+            <ul>
+                {% for i in plant_name %}
+                <a href="/headings?name={{ i }}&theplantname={{ i }}" class="linkstyle" style=display:flex;
+                    flex-direction:column;>{{ i }}</a>
+                {% endfor %}
+            </ul>
+        </div>
+
+
+        <div class="emojis">
+            <div class="plantcounter">
+                <p>You have {{ count }} plants</p>
+                <br>
+            </div>
+            <p>&#{{ emoji }};</p>
+        </div>
+
+        <div class="plant_view">
+            {% if info is defined %}
+            {% for i in info %}
+            <p><b>Name:</b> {{ i[1] }} </p>
+            <p><b>Latin name:</b> {{ i[2] }} </p>
+            <p><b>Light:</b> {{ i[3] }} </p>
+            <p><b>Water:</b> {{ i[4] }} </p>
+            <p style="max-width: 450px; overflow-x: auto;">
+                <b>Good to remember:</b>
+                {{ i[5] }}
+            </p>
+
+            <ul>
+                {% for j in comment %}
+                <li>
+                    {{ j }}
+                </li>
+                {% endfor %}
+            </ul>
+            <br>
+            <br>
+            <b>Add more notes:</b>
+            <form action="/notes?theplantname={{ i[1] }}" method="post">
+
+                <textarea style="resize: none;" name="plantname" rows="3" cols="50"></textarea>
+                <input type="submit" value="Submit">
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
+                <div class="plant_deletion">
+                    <br>
+                    <b>Delete this plant:</b>
+                    <a href="/delete_plant?name={{ i[1] }}" class="linkstyle">Delete</a>
+                </div>
+
+            </form>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/plant.css">
+
+</head>
+
+<body>
+
+    {% if same_name %}
+    <script>
+        alert("Error");
+    </script>
+    {% endif %}
+
+    <div class="plants">
+
+        <form action="/add_plant" method="post">
+
+            <p>
+                Name: <textarea name="name" rows="1" cols="30" required></textarea>
+                Latin name: <textarea name="latinname" rows="1" cols="30" required></textarea>
+            </p>
+
+            <p>Light tolerance:
+                <input id="ra1" type="radio" name="light" value="Bright direct" required>
+                <label for="ra1">Bright direct</label>
+
+                <input id="ra2" type="radio" name="light" value="Bright indirect" required>
+                <label for="ra2">Bright indirect</label>
+
+                <input id="ra3" type="radio" name="light" value="Low light" required>
+                <label for="ra3">Low light</label>
+            </p>
+
+            <p>Watering frequenzy:
+
+                <input id="rb1" type="radio" name="water" value="Often" required>
+                <label for="rb1">Often</label>
+
+                <input id="rb2" type="radio" name="water" value="Half-dry soil" required>
+                <label for="rb2">Half-dry soil</label>
+
+                <input id="rb3" type="radio" name="water" value="completely dry soil" required>
+                <label for="rb3">Completely dry soil</label>
+
+            </p>
+
+
+            <p>Good to remember: <textarea name="other" rows="4" cols="100" required></textarea>
+            </p>
+
+            <input type="submit" value="Submit">
+
+        </form>
+
+        <!-- fix 1:
+ add this line at the end of form on line 57:
+ <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">-->
+
+
+    </div>
+
+</body>
+
+</html>

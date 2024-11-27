@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/register.css">
+</head>
+
+<body>
+
+    {% if same_name %}
+    <script>
+        alert("Name is already in use!");
+    </script>
+    {% endif %}
+
+    <div class="login_system">
+        <form action="/register" method="post">
+            <div class="user_info">
+                <p>Username:</p>
+                <input type="text" name="username" required>
+                <p>Password:</p>
+                <input type="password" name="password" required>
+                <!--Fix 3: delete line 25-->
+                <input type="text" name="security question backup: favourite food?" required>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

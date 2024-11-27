@@ -1,0 +1,66 @@
+body {
+
+    background-color: rgb(234, 252, 234);
+    margin: auto;
+    max-width: 800px;
+}
+
+header {
+
+    padding-top: 0px;
+    height: 160px;
+    width: 100%;
+    background: rgb(234, 252, 234);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+h3 {
+
+    color: rgb(97, 145, 97);
+    font-size: 35px;
+}
+
+b {
+
+    padding: 0;
+    color: rgb(97, 145, 97);
+    font-size: 30px;
+}
+
+p {
+
+    padding-top: 40px;
+    color: rgb(97, 145, 97);
+    font-size: 25px;
+}
+
+.linkstyle {
+
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid rgb(176, 123, 172);
+    border-radius: 3px;
+    background-color: solid rgb(234, 252, 234);
+    color: rgb(176, 123, 172);
+    font-size: 22px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.linkstyle:hover {
+
+    background-color: solid rgb(234, 252, 234);
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgb(176, 123, 172);
+    }
+
+    100% {
+        box-shadow: 0 0 20px rgb(176, 123, 172);
+    }
+}

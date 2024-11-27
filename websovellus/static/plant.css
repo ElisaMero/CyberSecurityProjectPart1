@@ -1,0 +1,23 @@
+body {
+
+    background-color: rgb(234, 252, 234);
+    margin: auto;
+    max-width: 800px;
+}
+
+.plants {
+
+    position: center;
+    padding-top: 200px;
+    width: 510px;
+    height: 255px;
+    background: rgb(234, 252, 234);
+    display: flex;
+    justify-content: center;
+}
+
+.plants p {
+
+    color: rgb(97, 145, 97);
+    font-size: 22px;
+}

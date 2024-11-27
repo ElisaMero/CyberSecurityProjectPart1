@@ -1,0 +1,14 @@
+body {
+
+    background-color: rgb(234, 252, 234);
+    margin: auto;
+    max-width: 800px;
+}
+
+
+p {
+
+    padding-top: 90px;
+    color: rgb(97, 145, 97);
+    font-size: 40px;
+}
