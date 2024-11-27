@@ -9,7 +9,7 @@ Note!:
 
 Instructions for installing and running:
 
-Klone this repository in your computer -> go in the root file -> create .env -file
+Clone this repository in your computer -> go in the root file -> create .env -file
 Add in .env file:
 
 DATABASE_URL = < computer's-local-address >
