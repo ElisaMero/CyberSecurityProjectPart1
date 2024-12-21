@@ -19,7 +19,8 @@
     <div class="plants">
 
         <form action="/add_plant" method="post">
-
+            <!-- fix 1:
+ <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">-->
             <p>
                 Name: <textarea name="name" rows="1" cols="30" required></textarea>
                 Latin name: <textarea name="latinname" rows="1" cols="30" required></textarea>
@@ -56,10 +57,6 @@
             <input type="submit" value="Submit">
 
         </form>
-
-        <!-- fix 1:
- add this line at the end of form on line 57:
- <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">-->
 
 
     </div>

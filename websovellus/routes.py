@@ -2,6 +2,8 @@ from app import app
 import secrets
 from flask import redirect, render_template, request, session
 import registerpy
+# fix 1:
+# from flask_wtf.csrf import validate_csrf
 
 
 @app.route("/")
@@ -88,6 +90,11 @@ def add_plant():
     if request.method == "POST":
         if session["csrf_token"] != request.form.get("csrf_token"):
             return render_template("error.html")
+        # fix 1 (use this instead of line 91):
+        # try:
+        #   validate_csrf(request.form.get('csrf_token'))
+        # except Exception:
+            # return rrender_template("error.html")
         name = request.form["name"]
         latinname = request.form["latinname"]
         light = request.form["light"]
@@ -100,6 +107,7 @@ def add_plant():
             emoji = registerpy.choose_emoji()
             return render_template("user.html", count=count, name=name, plant_name=plant_name, emoji=emoji)
         return render_template("plant.html", same_name=True)
+    # fix 1:return render_template('plant.html', same_name=True,  csrf_token=session.get('_csrf_token'))
 
 
 @app.route("/headings", methods=["GET", "POST"])
