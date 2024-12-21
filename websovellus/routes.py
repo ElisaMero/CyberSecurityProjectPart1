@@ -116,7 +116,7 @@ def add_plant():
     if request.method == "POST":
         if session["csrf_token"] != request.form.get("csrf_token"):
             return render_template("error.html")
-        # fix 1 (use this instead of line 91):
+        # fix 1 (use this instead of line 117):
         # try:
         #   validate_csrf(request.form.get('csrf_token'))
         # except Exception:
