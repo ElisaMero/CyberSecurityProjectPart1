@@ -33,9 +33,9 @@ def register():
         # return render_template("register.html", same_name=False)
         username = request.form["username"]
         password = request.form["password"]
-        # fix 3: remove line 35!
-        question = request.form["question"]
-        if registerpy.register(username, password, question):
+        # fix 3: remove line 37! and answer from line 38
+        answer = request.form["answer"]
+        if registerpy.register(username, password, answer):
             return redirect("/")
         return render_template("register.html", same_name=True)
 
@@ -58,8 +58,34 @@ def login():
         return render_template("index.html")
     if request.method == "POST":
         username = request.form["username"]
+
         password = request.form["password"]
         if registerpy.login(username, password):
+            session["username"] = username
+            session["csrf_token"] = secrets.token_hex(16)
+            registerpy.create_emojis_table()
+            count = registerpy.count_plants()
+            name = registerpy.show_user()
+            plant_name = registerpy.plant_headings()
+            emoji = registerpy.choose_emoji()
+            return render_template("user.html", count=count, name=name, plant_name=plant_name, emoji=emoji)
+        return render_template("error.html")
+
+
+# fix 3: remove functions question() and login2()
+@app.route("/question")
+def question():
+    return render_template("question.html")
+
+
+@app.route("/login2", methods=["GET", "POST"])
+def login2():
+    if request.method == "GET":
+        return render_template("question.html")
+    if request.method == "POST":
+        username = request.form["username"]
+        answer = request.form["answer"]
+        if registerpy.check_question(username, answer):
             session["username"] = username
             session["csrf_token"] = secrets.token_hex(16)
             registerpy.create_emojis_table()

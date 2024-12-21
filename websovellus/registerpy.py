@@ -5,10 +5,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from random import randint
 
 
-def register(username, password):
+# fix 3: remove answer from the function:
+def register(username, password, answer):
     try:
         query = text(
-            "INSERT INTO users SET username='" + username + "', password='" + password + "'")
+            "INSERT INTO users SET username='" + username + "', password='" + password + "', answer='" + answer + "'")
         db.session.execute(query)
         db.session.commit()
     except:
@@ -39,6 +40,18 @@ def login(username, password):
             session["user_id"] = user.id
             return True
         return False
+
+# fix 3: remove this function:
+
+
+def check_question(username, answer):
+    answer = answer
+    query = text("SELECT id, answer FROM users WHERE username=:username")
+    result = db.session.execute(query, {"username": username})
+    user = result.fetchone()
+    if not user:
+        return False
+    return True
 
 
 def user_id():
