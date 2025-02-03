@@ -9,12 +9,14 @@ from random import randint
 def register(username, password, answer):
     try:
         query = text(
-            "INSERT INTO users SET username='" + username + "', password='" + password + "', answer='" + answer + "'")
-        db.session.execute(query)
+            "INSERT INTO users (username, password, answer) VALUES (:username, :password, :answer)"
+        )
+        db.session.execute(
+            query, {"username": username, "password": password, "answer": answer})
         db.session.commit()
     except:
         return False
-    return login(username, password)
+    return True
 
 
 # fix 2 and 4:
@@ -36,22 +38,29 @@ def login(username, password):
     if not user:
         return False
     else:
-        if check_password_hash(user.password, password):
-            session["user_id"] = user.id
-            return True
-        return False
+        session["user_id"] = user.id
+        return True
+    return False
 
+    # fix 3: take upper "else out and replace it with this:"
+    # else:
+    #  if check_password_hash(user.password, password):
+    #     session["user_id"] = user.id
+    #    return True
+
+    # return False
 # fix 3: remove this function:
 
 
 def check_question(username, answer):
     query = text(
-        "SELECT id, answer FROM users WHERE username=:username AND answer=:answer")
+        "SELECT id FROM users WHERE username=:username AND answer=:answer")
     result = db.session.execute(
         query, {"username": username, "answer": answer})
     user = result.fetchone()
     if not user:
         return False
+    session["user_id"] = user.id
     return True
 
 
