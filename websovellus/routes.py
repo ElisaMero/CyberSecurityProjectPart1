@@ -85,6 +85,7 @@ def login2():
     if request.method == "POST":
         username = request.form["username"]
         answer = request.form["answer"]
+
         if registerpy.check_question(username, answer):
             session["username"] = username
             session["csrf_token"] = secrets.token_hex(16)

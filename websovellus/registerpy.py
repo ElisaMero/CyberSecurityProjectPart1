@@ -45,9 +45,10 @@ def login(username, password):
 
 
 def check_question(username, answer):
-    answer = answer
-    query = text("SELECT id, answer FROM users WHERE username=:username")
-    result = db.session.execute(query, {"username": username})
+    query = text(
+        "SELECT id, answer FROM users WHERE username=:username AND answer=:answer")
+    result = db.session.execute(
+        query, {"username": username, "answer": answer})
     user = result.fetchone()
     if not user:
         return False
